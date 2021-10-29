@@ -1,8 +1,8 @@
-# Pathway specific PRS analysis for PD progression
+# Sex specific MR analysis for PD
 
  - **Project:** sex specific biomarker MR analysis for PD
  - **Author(s):** Hirotaka Iwaki 
- - **Date Last Updated:** August 20 2021
+ - **Date Last Updated:** Oct 29 2021
   - **Status:** Incomplete
     - **Update Description:** Starting analysis
 
