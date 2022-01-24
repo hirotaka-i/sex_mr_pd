@@ -70,12 +70,18 @@ if(grepl('female',uid)){
 }
 
 
-# mean R2
-meanR2xz =  mean(get_r_from_pn(dat$pval.exposure, dat$samplesize.exposure)^2) # exposure variance explained by instruments (mean)
+# get F
+# mean F
+R2s = get_r_from_pn(dat$pval.exposure, dat$samplesize.exposure)^2
+meanR2xz =  mean(R2s) # exposure variance explained by instruments (mean)
 mean_F = calculate_F(meanR2xz, n, 1)
-# max SNP
-maxR2xz =  max(get_r_from_pn(dat$pval.exposure, dat$samplesize.exposure)^2) # exposure variance explained by instruments (mean)
+# max F
+maxR2xz =  max(R2s) # exposure variance explained by instruments (mean)
 max_F = calculate_F(maxR2xz, n, 1)
+
+# all_F
+all_F = calculate_F(sum(R2s), n, length(R2s)) 
+#NOTE: F cannot be compared if the sample size and n_snps are different
 
 df_power = data.frame(
     R2_used = c('mean', 'mean', 'max', 'max', 'mean', 'mean'),
@@ -89,7 +95,7 @@ df_power = data.frame(
         power_brion(meanR2xz, N, alpha=.05, K, OR, k),
         power_burgess(meanR2xz, N, alpha=.05, K, OR, k)
     ),
-    F = c(mean_F, mean_F, max_F, max_F, NA_real_, NA_real_)
+    F = c(mean_F, mean_F, max_F, max_F, all_F, all_F)
 )
 
 write.csv(df_power, paste0(uid,'.mr_power.csv'),row.names=F)
