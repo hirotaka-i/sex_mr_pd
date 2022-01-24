@@ -84,7 +84,7 @@ all_F = calculate_F(sum(R2s), n, length(R2s))
 #NOTE: F cannot be compared if the sample size and n_snps are different
 
 df_power = data.frame(
-    R2_used = c('mean', 'mean', 'max', 'max', 'mean', 'mean'),
+    R2_used = c('mean', 'mean', 'max', 'max', 'all', 'all'),
     method = c('Brion', 'Burgess', 'Brion', 'Burgess','Brion', 'Burgess'),
     n_snp = c(1,1,1,1,k,k),
     power = c(
